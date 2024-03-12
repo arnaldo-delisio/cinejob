@@ -1,8 +1,7 @@
-import React from 'react';
-import Select, { MultiValue } from 'react-select';
+import React, { CSSProperties } from 'react';
+import Select, { CSSObjectWithLabel, MultiValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { StylesConfig } from 'react-select';
-import { ControlProps } from 'react-select';
+import { StylesConfig, GroupBase, ControlProps } from 'react-select';
 
 interface OptionType {
   value: string;
@@ -28,39 +27,35 @@ export const skills: OptionType[] = [
 
 const animatedComponents = makeAnimated();
 
-const customStyles = {
-  control: (provided: ControlProps<OptionType, true>) => ({
-    ...provided,
-    backgroundColor: '#F6F6F6', // bg-grey-50
+
+const customStyles: StylesConfig<OptionType, true> = {
+  control: (base: CSSObjectWithLabel, props: ControlProps<OptionType, true, GroupBase<OptionType>>) => ({
+    ...base,
+    backgroundColor: '#F6F6F6',
     height: '54px',
-    placeholder: { color: '#545454' }, // text-grey-500
-    borderRadius: '9999px', // rounded-full
-    padding: '16px', // p-regular-16
-    paddingLeft: '10px', // px-5
-    paddingRight: '5px', // px-5
-    paddingTop: '3px', // py-3
-    paddingBottom: '3px', // py-3
+    borderRadius: '9999px',
+    padding: '16px',
+    paddingLeft: '10px',
+    paddingRight: '5px',
+    paddingTop: '3px',
+    paddingBottom: '3px',
     border: 'none',
-    boxShadow: 'none', // focus-visible:ring-transparent focus:ring-transparent
-    '&:hover': { border: 'none' },
-    '&:focus': { boxShadow: 'none' },
+    boxShadow: 'none',
+    ':hover': { border: 'none' },
+    ':focus': { boxShadow: 'none' },
   }),
 
-  valueContainer: (provided: ControlProps<OptionType, true>) => ({
-    ...provided,
-    flexWrap: 'wrap', // Allow the tags to wrap
-    overflowX: 'auto', // Enable horizontal scrolling
-    overflowY: 'hidden', // Prevent vertical scrolling
+  valueContainer: (base: CSSObjectWithLabel) => ({
+    ...base,
+    flexWrap: 'wrap',
+    overflowX: 'auto',
+    overflowY: 'hidden',
     maxHeight: '30px',
   }),
 
-  
-  placeholder: (defaultStyles: ControlProps<OptionType, true>) => ({
-    ...defaultStyles,
-    color: '#000000', // Set your desired placeholder color here
-  }),
-  // You might need to define other parts like menu, option, etc., similarly.
+  // Correctly typing other style overrides as needed.
 };
+
 
 const DropdownEquipment: React.FC<DropdownEquipmentProps> = ({ onChange, value }) => {
   return (
