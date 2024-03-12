@@ -4,10 +4,6 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
-import { deleteCastingInfoByUserId } from '@/lib/actions/casting.actions'
-import { deleteVehiclesByUserId } from '@/lib/actions/vehicle.actions'
-import { deleteLocationsByUserId } from '@/lib/actions/location.actions'
-import { deleteAnimalsByUserId } from '@/lib/actions/animal.actions'
  
 export async function POST(req: Request) {
  
@@ -117,33 +113,13 @@ export async function POST(req: Request) {
   }
 
   if (eventType === 'user.deleted') {
-    const { id } = evt.data;
+    const { id } = evt.data
 
-    if (typeof id !== 'undefined') {
-        const results = await Promise.allSettled([
-            deleteCastingInfoByUserId(id),
-            deleteVehiclesByUserId(id),
-            deleteLocationsByUserId(id),
-            deleteAnimalsByUserId(id),
-        ]);
+    const deletedUser = await deleteUser(id!)
 
-        // Handling results
-        results.forEach((result, index) => {
-            if (result.status === 'fulfilled') {
-                console.log(`Operation ${index} succeeded`);
-            } else {
-                console.error(`Operation ${index} failed:`, result.reason);
-                // You might choose to log the error, notify an admin, etc.
-            }
-        });
-
-        const deletedUser = await deleteUser(id);
-        return NextResponse.json({ message: 'OK', user: deletedUser });
-    } else {
-        console.error("User ID is undefined, cannot delete related entities or user.");
-        return new Response('User ID is undefined', { status: 400 });
-    }
-}
-
+    return NextResponse.json({ message: 'OK', user: deletedUser })
+  }
+ 
+  return new Response('', { status: 200 })
 }
  
