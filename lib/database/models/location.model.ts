@@ -30,7 +30,6 @@ const LocationSchema = new Schema<ILocation>({
     state: String,
     postalCode: String,
     country: String,
-    required: true
   },
   amenities: [{ type: String }],
   images: [{ type: String, required: true}],

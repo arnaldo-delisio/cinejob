@@ -87,78 +87,9 @@ export async function POST(req: Request) {
         }
       })
     }
-
-    const castingInfo = {
-      userId: newUser._id.toString(),
-      complexion: '', 
-      height: '', 
-      weight: '', 
-      size: '', 
-      eyeColor: '', 
-      hairColor: '', 
-      shoes: '', 
-      tattoos: [], 
-      photoPP: '', 
-      photoFI: '', 
-      curriculum: '', 
-      competencies: [], 
-      languages: [], 
-      equipment: [], 
-    };
-
-    const newCastingInfo = await createCasting(castingInfo);
-
-    const vehicle = {
-      userId: newUser._id.toString(), 
-      vehicleMake: "", 
-      vehicleModel: "", 
-      vehicleColor: "", 
-      productionYear: "", 
-      photos: [],
-    };
-    
-    const newVehicle = await createVehicle(vehicle);
-    
-    const location = {
-      userId: newUser._id.toString(),
-      type: "",
-      squareMeters: '',
-      description: "",
-      address: {
-        street: "",
-        city: "",
-        state: "",
-        postalCode: "",
-        country: "",
-      },
-      amenities: [],
-      images: [],
-      pricePerDay: "",
-    };
-    
-    const newLocation = await createLocation(location);
-    
-    const animal = {
-      userId: newUser._id.toString(),
-      type: "",
-      breed: "",
-      name: "",
-      photo: "",
-    };
-    
-    const newAnimal = await createAnimal(animal);
     
 
-    return NextResponse.json({
-      message: 'OK',
-      data: {
-        user: newUser,
-        castingInfo: newCastingInfo, 
-        vehicleInfo: newVehicle, 
-        locationInfo: newLocation, 
-        animalInfo: newAnimal,
-      }
-    });
+    return NextResponse.json({ message: 'OK', user: newUser })
     
   }
 
