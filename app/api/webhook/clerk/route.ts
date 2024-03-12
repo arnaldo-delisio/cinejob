@@ -4,10 +4,6 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
-import { createCasting, deleteCastingInfoByUserId } from '@/lib/actions/casting.actions'
-import { createVehicle, deleteVehiclesByUserId } from '@/lib/actions/vehicle.actions'
-import { createLocation, deleteLocationsByUserId } from '@/lib/actions/location.actions'
-import { createAnimal, deleteAnimalsByUserId } from '@/lib/actions/animal.actions'
  
 export async function POST(req: Request) {
  
@@ -118,13 +114,6 @@ export async function POST(req: Request) {
 
   if (eventType === 'user.deleted') {
     const { id } = evt.data
-
-    await Promise.all([
-      deleteCastingInfoByUserId(id!),
-      deleteVehiclesByUserId(id!),
-      deleteLocationsByUserId(id!),
-      deleteAnimalsByUserId(id!),
-    ]);
 
     const deletedUser = await deleteUser(id!)
 
