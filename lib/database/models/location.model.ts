@@ -22,7 +22,7 @@ export interface ILocation extends Document {
 const LocationSchema = new Schema<ILocation>({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   type: { type: String, required: true },
-  squareMeters: {String, required: true},
+  squareMeters: {type: String, required: true},
   description: { type: String, required: true },
   address: {
     street: String,
