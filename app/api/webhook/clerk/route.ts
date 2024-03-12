@@ -4,6 +4,10 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
+import { createCasting, deleteCastingInfoByUserId } from '@/lib/actions/casting.actions'
+import { createVehicle, deleteVehiclesByUserId } from '@/lib/actions/vehicle.actions'
+import { createLocation, deleteLocationsByUserId } from '@/lib/actions/location.actions'
+import { createAnimal, deleteAnimalsByUserId } from '@/lib/actions/animal.actions'
  
 export async function POST(req: Request) {
  
@@ -55,7 +59,7 @@ export async function POST(req: Request) {
   const eventType = evt.type;
  
   if(eventType === 'user.created') {
-    const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
+    const { id, email_addresses, first_name, last_name } = evt.data;
 
     const user = {
       clerkId: id,
@@ -64,41 +68,16 @@ export async function POST(req: Request) {
       lastName: last_name,
       gender: '', // Placeholder, adjust as necessary
       birthDate: undefined, // Placeholder, adjust as necessary
-      vatNumber: '', // Placeholder, adjust as necessary
-      physicalInfo: {
-        complexion: '',
-        height: 0,
-        weight: 0,
-        size: '',
-        eyeColor: '',
-        hairColor: '',
-        shoes: 0,
-        tattoos: [],
+      vatNumber: '',
+      address: {
+        street: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: '',
       },
-      media: {
-        photoPP: image_url, // Assuming photoPP is the profile picture
-        photoFI: '', // Placeholder for full-body image
-        curriculum: '', // Placeholder for curriculum vitae or resume
-      },
-      skills: {
-        competencies: [],
-        languages: [],
-        equipment: [],
-      },
-      socialLinks: {
-        linkedin: '',
-        facebook: '',
-        instagram: '',
-        tiktok: '',
-        twitter: '',
-        youtube: '',
-      },
-      animals: [], // Empty array, to be filled later
-      vehicles: [], // Empty array, to be filled later
-      locations: [], // Empty array, to be filled later
     };
     
-
     const newUser = await createUser(user);
 
     if(newUser) {
@@ -109,49 +88,96 @@ export async function POST(req: Request) {
       })
     }
 
-    return NextResponse.json({ message: 'OK', user: newUser })
+    const castingInfo = {
+      userId: newUser._id.toString(),
+      complexion: '', 
+      height: '', 
+      weight: '', 
+      size: '', 
+      eyeColor: '', 
+      hairColor: '', 
+      shoes: '', 
+      tattoos: [], 
+      photoPP: '', 
+      photoFI: '', 
+      curriculum: '', 
+      competencies: [], 
+      languages: [], 
+      equipment: [], 
+    };
+
+    const newCastingInfo = await createCasting(castingInfo);
+
+    const vehicle = {
+      userId: newUser._id.toString(), 
+      vehicleMake: "", 
+      vehicleModel: "", 
+      vehicleColor: "", 
+      productionYear: "", 
+      photos: [],
+    };
+    
+    const newVehicle = await createVehicle(vehicle);
+    
+    const location = {
+      userId: newUser._id.toString(),
+      type: "",
+      squareMeters: '',
+      description: "",
+      address: {
+        street: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        country: "",
+      },
+      amenities: [],
+      images: [],
+      pricePerDay: "",
+    };
+    
+    const newLocation = await createLocation(location);
+    
+    const animal = {
+      userId: newUser._id.toString(),
+      type: "",
+      breed: "",
+      name: "",
+      photo: "",
+    };
+    
+    const newAnimal = await createAnimal(animal);
+    
+
+    return NextResponse.json({
+      message: 'OK',
+      data: {
+        user: newUser,
+        castingInfo: newCastingInfo, 
+        vehicleInfo: newVehicle, 
+        locationInfo: newLocation, 
+        animalInfo: newAnimal,
+      }
+    });
+    
   }
 
   if (eventType === 'user.updated') {
-    const {id, image_url, first_name, last_name, username } = evt.data
+    const {id, first_name, last_name } = evt.data
 
     const user = {
       firstName: first_name,
       lastName: last_name,
-      gender: '', // Placeholder, adjust as necessary
-      birthDate: undefined, // Placeholder, adjust as necessary
-      vatNumber: '', // Placeholder, adjust as necessary
-      physicalInfo: {
-        complexion: '',
-        height: 0,
-        weight: 0,
-        size: '',
-        eyeColor: '',
-        hairColor: '',
-        shoes: 0,
-        tattoos: [],
+      gender: '',
+      birthDate: undefined, 
+      vatNumber: '',
+      address: {
+        street: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: '',
       },
-      media: {
-        photoPP: image_url, // Assuming photoPP is the profile picture
-        photoFI: '', // Placeholder for full-body image
-        curriculum: '', // Placeholder for curriculum vitae or resume
-      },
-      skills: {
-        competencies: [],
-        languages: [],
-        equipment: [],
-      },
-      socialLinks: {
-        linkedin: '',
-        facebook: '',
-        instagram: '',
-        tiktok: '',
-        twitter: '',
-        youtube: '',
-      },
-      animals: [], // Empty array, to be filled later
-      vehicles: [], // Empty array, to be filled later
-      locations: [], // Empty array, to be filled later
     };
 
     const updatedUser = await updateUser(id, user)
@@ -161,6 +187,13 @@ export async function POST(req: Request) {
 
   if (eventType === 'user.deleted') {
     const { id } = evt.data
+
+    await Promise.all([
+      deleteCastingInfoByUserId(id!),
+      deleteVehiclesByUserId(id!),
+      deleteLocationsByUserId(id!),
+      deleteAnimalsByUserId(id!),
+    ]);
 
     const deletedUser = await deleteUser(id!)
 

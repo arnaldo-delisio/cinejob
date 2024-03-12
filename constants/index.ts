@@ -4,8 +4,8 @@ export const headerLinks = [
     route: '/',
   },
   {
-    label: 'Create Event',
-    route: '/events/create',
+    label: 'Try',
+    route: '/try',
   },
   {
     label: 'My Profile',
@@ -13,15 +13,33 @@ export const headerLinks = [
   },
 ]
 
-export const eventDefaultValues = {
-  title: '',
-  description: '',
-  location: '',
-  imageUrl: '',
-  startDateTime: new Date(),
-  endDateTime: new Date(),
-  categoryId: '',
-  price: '',
-  isFree: false,
-  url: '',
+export const personalInfoDefaultValues = {
+  firstName: '',
+  lastName: '',
+  gender: '',
+  birthDate: undefined,
+  region: '',
+  vatNumber: '',
+}
+
+export const physicalInfoDefaultValues = {
+  complexion: '',
+  height: '',
+  weight: '',
+  size: '',
+  eyeColor: '',
+  hairColor: '',
+  shoes: '',
+  tattoos: [],
+}
+
+export const skillsSocialsDefaultValues = {
+  skills: [],
+  languages: [],
+  equipment: [],
+}
+
+export const mediaDefaultValues = {
+  photoPP: '',
+  photoFI: '',
 }

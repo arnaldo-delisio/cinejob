@@ -1,3 +1,14 @@
 /types/index.ts 
 /app/api/webhook/route.ts
-/lib/actions/user.actions.ts work on USER
+/lib/actions/user.actions.ts
+/lib/database/models/user.model.ts work on USER: 
+
+1:58:00 How to create a submission dropdown for vehicles
+
+2:04:00 How to add text area for bio
+
+3:10:00 Create Profile Page for Users
+
+3:27:30 Create Research For Productions
+
+Modify datepicker

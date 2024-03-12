@@ -1,6 +1,28 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models, Document } from "mongoose";
 
-const UserSchema = new Schema({
+export interface IUser extends Document {
+  clerkId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender?: string;
+  birthDate?: Date;
+  vatNumber?: string;
+  address?: {
+    street?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    country?: string;
+  };
+  // References to other entities (if necessary based on your app's requirements)
+  vehicles?: Schema.Types.ObjectId[];
+  locations?: Schema.Types.ObjectId[];
+  animals?: Schema.Types.ObjectId[];
+  castingInfos?: Schema.Types.ObjectId[];
+}
+
+const UserSchema = new Schema<IUser>({
   clerkId: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
@@ -8,60 +30,18 @@ const UserSchema = new Schema({
   gender: String,
   birthDate: Date,
   vatNumber: { type: String, unique: true },
-  physicalInfo: {
-    complexion: String,
-    height: Number,
-    weight: Number,
-    size: String,
-    eyeColor: String,
-    hairColor: String,
-    shoes: Number,
-    tattoos: [String],
-  },
-  media: {
-    photoPP: String,
-    photoFI: String,
-    curriculum: String,
-  },
-  skills: {
-    competencies: [String],
-    languages: [String],
-    equipment: [String], // For JSONB data
-  },
-  socialLinks: {
-    linkedin: String,
-    facebook: String,
-    instagram: String,
-    tiktok: String,
-    twitter: String,
-    youtube: String,
-  },
-  animals: [{
-    type: String,
-    photo: String,
-  }],
-vehicles: [{
-    make: String, // E.g., "Toyota"
-    model: String, // E.g., "Camry"
-    color: String,
-    productionYear: Number,
-    images: [String],
-}],
- locations: [{
-    type: String,
-    squareMeters: Number,
-    description: String,
-    address: String,
+  address: {
+    street: String,
     city: String,
+    state: String,
+    postalCode: String,
     country: String,
-    zipCode: String,
-    amenities: [String],
-    images: [String],
-    pricePerDay: Number,
-  }],
-  created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now },
-});
+  },
+  vehicles: [{ type: Schema.Types.ObjectId, ref: 'Vehicle' }],
+  locations: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
+  animals: [{ type: Schema.Types.ObjectId, ref: 'Animal' }],
+  castingInfos: [{ type: Schema.Types.ObjectId, ref: 'CastingInfo' }],
+}, { timestamps: true }); // Mongoose manages createdAt and updatedAt fields automatically
 
 const User = models.User || model('User', UserSchema);
 

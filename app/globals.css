@@ -218,7 +218,7 @@ body {
   }
 
   .button {
-    @apply rounded-full h-[54px] p-regular-16;
+    @apply w-[200px] rounded-full h-[54px] p-regular-16 self-center my-2;
   }
 
   .select-item {
@@ -250,7 +250,7 @@ body {
 .cl-formButtonPrimary:hover,
 .cl-formButtonPrimary:focus,
 .cl-formButtonPrimary:active {
-  background-color: #705CF7
+  background-color: #3860d9
 }
 
 /* ========================================== REACT-DATEPICKER STYLES */
@@ -266,11 +266,20 @@ body {
 }
 
 .react-datepicker__day--selected {
-  background-color: #624cf5 !important;
+  background-color: #3860d9 !important;
   color: #ffffff !important;
   border-radius: 4px;
 }
 
 .react-datepicker__time-list-item--selected {
-  background-color: #624cf5 !important;
+  background-color: #3860d9 !important;
+}
+
+.custom-dropdown-menu {
+  max-height: 200px; /* Adjust based on desired height */
+  overflow-y: auto;
+}
+
+.error-message-photo {
+  color: #ac2f2f;
 }
