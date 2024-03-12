@@ -22,6 +22,7 @@ import { useUser } from "@clerk/nextjs";
 type PersonalInfoFormProps = {
   type: "Update"
   user?: IUser
+  userId: string;
 }
 
 const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
