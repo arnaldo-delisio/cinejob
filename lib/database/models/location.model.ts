@@ -9,7 +9,7 @@ export interface ILocation extends Document {
   address: {
     street: string;
     city: string;
-    state: string;
+    region: string;
     postalCode: string;
     country: string;
   };
@@ -27,7 +27,7 @@ const LocationSchema = new Schema<ILocation>({
   address: {
     street: String,
     city: String,
-    state: String,
+    region: String,
     postalCode: String,
     country: String,
   },

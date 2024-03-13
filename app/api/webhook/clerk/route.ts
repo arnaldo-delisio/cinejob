@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       address: {
         street: '',
         city: '',
-        state: '',
+        region: '',
         postalCode: '',
         country: '',
       },
@@ -101,7 +101,7 @@ export async function POST(req: Request) {
       address: {
         street: '',
         city: '',
-        state: '',
+        region: '',
         postalCode: '',
         country: '',
       },

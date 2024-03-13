@@ -162,6 +162,35 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
             )}
           />
         </div>
+
+        <div className="flex flex-col gap-5 md:flex-row">
+        <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Nome</FormLabel>
+                <FormControl>
+                  <Input placeholder="Città di domicilio" {...field} className="input-field"/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="postalCode"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>CAP di domicilio</FormLabel>
+                <FormControl>
+                  <Input placeholder="Inserisci il CAP di domicilio" {...field} className="input-field"/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         
         <Button type="submit" className="button">Aggiorna</Button>
       </form>

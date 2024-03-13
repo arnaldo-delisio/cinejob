@@ -9,7 +9,7 @@ export type CreateUserParams = {
   address?: {
     street?: string;
     city?: string;
-    state?: string;
+    region?: string;
     postalCode?: string;
     country?: string;
   };
@@ -25,7 +25,7 @@ export type UpdateUserParams = {
   address?: {
     street?: string;
     city?: string;
-    state?: string;
+    region?: string;
     postalCode?: string;
     country?: string;
   };
@@ -93,7 +93,7 @@ export type CreateLocationParams = {
   address: {
     street: string;
     city: string;
-    state: string;
+    region: string;
     postalCode: string;
     country: string;
   }; // Detailed address of the location
@@ -110,7 +110,7 @@ export type UpdateLocationParams = {
   address?: {
     street?: string;
     city?: string;
-    state?: string;
+    region?: string;
     postalCode?: string;
     country?: string;
   }; // Allows updating specific parts of the address

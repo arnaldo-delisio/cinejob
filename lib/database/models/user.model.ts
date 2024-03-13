@@ -11,7 +11,7 @@ export interface IUser extends Document {
   address?: {
     street?: string;
     city?: string;
-    state?: string;
+    region?: string;
     postalCode?: string;
     country?: string;
   };
@@ -33,7 +33,7 @@ const UserSchema = new Schema<IUser>({
   address: {
     street: String,
     city: String,
-    state: String,
+    region: String,
     postalCode: String,
     country: String,
   },

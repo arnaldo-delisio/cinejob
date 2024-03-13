@@ -12,3 +12,5 @@
 3:27:30 Create Research For Productions
 
 Modify datepicker
+
+Handle user deletion with pre remove middleware approach
