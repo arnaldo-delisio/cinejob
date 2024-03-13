@@ -48,8 +48,22 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
 
     const userId = clerkUser.publicMetadata?.userId as string;
     
+    const dataToSubmit = {
+      // Include all other fields from values directly
+      ...values,
+      // Then, override and structure the address field as required by the backend
+      address: {
+        street: values.street,
+        city: values.city,
+        region: values.region,
+        postalCode: values.postalCode,
+        country: values.country,
+      },
+      // Exclude flat address fields by not explicitly including them here
+    };
+
     try {
-      const updatedUser = await updateUser(clerkId, values);
+      const updatedUser = await updateUser(clerkId, dataToSubmit);
       console.log('User updated successfully', updatedUser);
       // Optionally, redirect the user or show a success message
       router.push(`/${userId}/dashboard/profile/`); // Replace '/some-success-page' with your actual success page route

@@ -11,6 +11,8 @@ export const personalInfoFormSchema = z.object({
   }),
   city: z.string().min(1, "Inserisci una città").max(30, "Massimo 30 caratteri"),
   postalCode: z.string().regex(/^\d+$/, "Il CAP è formato soltanto da numeri").min(5, "Il CAP è di 5 numeri").max(5, "Il CAP è di 5 numeri"),
+  street: z.string().optional(),
+  country: z.string().optional()
 })
 
 export const physicalInfoFormSchema = z.object({
