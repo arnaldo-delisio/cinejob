@@ -65,9 +65,6 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
 
     try {
       const updatedUser = await updateUser(clerkId, dataToSubmit);
-      if (typeof values.birthDate === 'string') {
-        values.birthDate = new Date(values.birthDate);
-      }
       console.log('User updated successfully', updatedUser);
       // Optionally, redirect the user or show a success message
       router.push(`/${userId}/dashboard/profile/`); // Replace '/some-success-page' with your actual success page route
