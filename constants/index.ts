@@ -19,8 +19,14 @@ export const personalInfoDefaultValues = {
   gender: '',
   nationality: '',
   birthDate: undefined,
-  region: '',
   vatNumber: '',
+  address: {
+    street: '',
+    city: '',
+    region: '',
+    postalCode: '',
+    country: '',
+  },
 }
 
 export const physicalInfoDefaultValues = {

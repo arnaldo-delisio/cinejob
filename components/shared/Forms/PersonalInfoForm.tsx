@@ -54,11 +54,11 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
       ...values,
       // Then, override and structure the address field as required by the backend
       address: {
-        street: values.street,
-        city: values.city,
-        region: values.region,
-        postalCode: values.postalCode,
-        country: values.country,
+        street: values.address.street,
+        city: values.address.city,
+        region: values.address.region,
+        postalCode: values.address.postalCode,
+        country: values.address.country,
       },
       // Exclude flat address fields by not explicitly including them here
     };
@@ -186,7 +186,7 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
         <div className="flex flex-col gap-5 md:flex-row">
         <FormField
             control={form.control}
-            name="region"
+            name="address.region"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Regione di Residenza</FormLabel>
@@ -199,12 +199,12 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
           />
           <FormField
             control={form.control}
-            name="city"
+            name="address.city"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Comune di Residenza</FormLabel>
                 <FormControl>
-                  <Input placeholder="Inserisci il tuo comune" {...field} className="input-field"/>
+                  <Input {...field} placeholder="Inserisci il tuo comune"  className="input-field"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -215,12 +215,12 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
         <div className="flex flex-col gap-5 md:flex-row">
         <FormField
             control={form.control}
-            name="street"
+            name="address.street"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Indirizzo di Residenza</FormLabel>
                 <FormControl>
-                <Input placeholder="Inserisci il tuo indirizzo" {...field} className="input-field"/>
+                <Input {...field} placeholder="Inserisci il tuo indirizzo" className="input-field"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -228,12 +228,12 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
           />
           <FormField
             control={form.control}
-            name="postalCode"
+            name="address.postalCode"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>CAP di residenza</FormLabel>
                 <FormControl>
-                  <Input placeholder="Inserisci il CAP" {...field} className="input-field"/>
+                  <Input {...field} placeholder="Inserisci il CAP" className="input-field"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
