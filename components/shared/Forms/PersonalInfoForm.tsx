@@ -18,6 +18,7 @@ import { IUser } from "@/lib/database/models/user.model"
 import { useRouter } from "next/navigation" // Updated from 'next/navigation' to 'next/router' for correct import
 import { updateUser } from "@/lib/actions/user.actions"
 import { useUser } from "@clerk/nextjs";
+import DropdownNationality from "../Dropdowns/DropdownNationality"
 
 type PersonalInfoFormProps = {
   type: "Update"
@@ -164,12 +165,12 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
           />
           <FormField
             control={form.control}
-            name="region"
+            name="nationality"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Regione di Domicilio</FormLabel>
+                <FormLabel>Cittadinanza</FormLabel>
                 <FormControl>
-                  <DropdownRegion onChangeHandler={field.onChange} value={field.value}/>
+                  <DropdownNationality onChangeHandler={field.onChange} value={field.value}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -180,12 +181,41 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
         <div className="flex flex-col gap-5 md:flex-row">
         <FormField
             control={form.control}
+            name="region"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Regione di Residenza</FormLabel>
+                <FormControl>
+                  <DropdownRegion onChangeHandler={field.onChange} value={field.value}/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="city"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Nome</FormLabel>
+                <FormLabel>Comune di Residenza</FormLabel>
                 <FormControl>
-                  <Input placeholder="Città di domicilio" {...field} className="input-field"/>
+                  <Input placeholder="Inserisci il tuo comune" {...field} className="input-field"/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex flex-col gap-5 md:flex-row">
+        <FormField
+            control={form.control}
+            name="street"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Indirizzo di Residenza</FormLabel>
+                <FormControl>
+                <Input placeholder="Inserisci il tuo indirizzo" {...field} className="input-field"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -196,9 +226,9 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
             name="postalCode"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>CAP di domicilio</FormLabel>
+                <FormLabel>CAP di residenza</FormLabel>
                 <FormControl>
-                  <Input placeholder="Inserisci il CAP di domicilio" {...field} className="input-field"/>
+                  <Input placeholder="Inserisci il CAP" {...field} className="input-field"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>

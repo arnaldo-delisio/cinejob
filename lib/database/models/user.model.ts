@@ -6,6 +6,7 @@ export interface IUser extends Document {
   firstName?: string;
   lastName?: string;
   gender?: string;
+  nationality?: string;
   birthDate?: Date;
   vatNumber?: string;
   address?: {
@@ -28,6 +29,7 @@ const UserSchema = new Schema<IUser>({
   firstName: String,
   lastName: String,
   gender: String,
+  nationality: String,
   birthDate: Date,
   vatNumber: { type: String, unique: true },
   address: {

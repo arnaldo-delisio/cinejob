@@ -17,6 +17,7 @@ export const personalInfoDefaultValues = {
   firstName: '',
   lastName: '',
   gender: '',
+  nationality: '',
   birthDate: undefined,
   region: '',
   vatNumber: '',

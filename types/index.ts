@@ -4,6 +4,7 @@ export type CreateUserParams = {
   firstName?: string;
   lastName?: string;
   gender?: string;
+  nationality?: string;
   birthDate?: Date;
   vatNumber?: string;
   address?: {
@@ -20,6 +21,7 @@ export type UpdateUserParams = {
   firstName?: string;
   lastName?: string;
   gender?: string;
+  nationality?: string;
   birthDate?: Date;
   vatNumber?: string;
   address?: {
