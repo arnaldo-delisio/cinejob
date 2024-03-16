@@ -6,15 +6,11 @@ export const personalInfoFormSchema = z.object({
   gender: z.string().min(2, "Seleziona un genere"),
   nationality: z.string().min(2, "Seleziona una nazionalità"),
   vatNumber: z.string().min(16, "Il codice fiscale è di 16 caratteri").max(16, "Il codice fiscale è di 16 caratteri"),
-  birthDate: z.date({
-    required_error: "Inserisci la tua data di nascita"
-  }),
+  birthDate: z.date(),
   region: z.string().min(2, "Seleziona una regione di domicilio"),
   city: z.string().min(1, "Inserisci una città").max(30, "Massimo 30 caratteri"),
   postalCode: z.string().regex(/^\d+$/, "Il CAP è formato soltanto da numeri").min(5, "Il CAP è di 5 numeri").max(5, "Il CAP è di 5 numeri"),
-  street: z.string().refine(val => val !== undefined, {
-    message: "Inserisci il tuo indirizzo di residenza",
-  }),
+  street: z.string().min(1, "Inserisci il tuo indirizzo di residenza"),
   country: z.string().optional()
 })
 
