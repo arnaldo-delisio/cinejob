@@ -6,16 +6,7 @@ export const personalInfoFormSchema = z.object({
   gender: z.string().min(2, "Seleziona un genere"),
   nationality: z.string().min(2, "Seleziona una nazionalità"),
   vatNumber: z.string().min(16, "Il codice fiscale è di 16 caratteri").max(16, "Il codice fiscale è di 16 caratteri"),
-  birthDate: z.preprocess((arg) => {
-    if (typeof arg === 'string') {
-      // Attempt to parse string as Date
-      const parsedDate = new Date(arg);
-      if (!isNaN(parsedDate.getTime())) {
-        return parsedDate; // Return Date object if valid
-      }
-    }
-    return arg; // Return original argument if not a string or cannot be parsed as Date
-  }, z.date()),
+  birthDate: z.string().transform((str) => new Date(str)),
   street: z.string().nonempty("Inserisci il tuo indirizzo di residenza"),
   address:z.object({
     street: z.string().nonempty("Inserisci il tuo indirizzo di residenza"),
