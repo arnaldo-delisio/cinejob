@@ -19,7 +19,6 @@ import { useRouter } from "next/navigation" // Updated from 'next/navigation' to
 import { updateUser } from "@/lib/actions/user.actions"
 import { useUser } from "@clerk/nextjs";
 import DropdownNationality from "../Dropdowns/DropdownNationality"
-import { parse } from "date-fns"
 
 type PersonalInfoFormProps = {
   type: "Update"
@@ -49,11 +48,6 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
     const clerkId = clerkUser.id; // Use clerkId from Clerk user
 
     const userId = clerkUser.publicMetadata?.userId as string;
-    
-    if (typeof values.birthDate === 'string') {
-      // Specify the format matching your input
-      values.birthDate = parse(values.birthDate, "dd/MM/yyyy", new Date());
-    }
 
     const dataToSubmit = {
       // Include all other fields from values directly
