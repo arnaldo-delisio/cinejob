@@ -130,7 +130,7 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
                         wrapperClassName="datePicker"
                         placeholderText="Data di Nascita"
                         maxDate={new Date()}
-                        showYearPicker={true}
+                        showMonthYearDropdown={true}
                         />
                     </div>
                   </FormControl>
