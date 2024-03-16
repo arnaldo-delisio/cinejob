@@ -28,7 +28,7 @@ type PersonalInfoFormProps = {
 
 const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
   const { user: clerkUser } = useUser(); // Use Clerk hook to get the current user
-  const initialValues = user && type === 'Update' 
+  const initialValues = user && type === 'Update'
     ? user
     : personalInfoDefaultValues
   const router = useRouter();
@@ -128,7 +128,10 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
                         onChange={(date: Date) => field.onChange(date)}
                         dateFormat= "dd/MM/yyyy"
                         wrapperClassName="datePicker"
-                        placeholderText="Data di Nascita"/>
+                        placeholderText="Data di Nascita"
+                        maxDate={new Date()}
+                        showYearPicker={true}
+                        />
                     </div>
                   </FormControl>
                   <FormMessage />
