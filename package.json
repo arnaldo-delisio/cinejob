@@ -21,6 +21,7 @@
     "@uploadthing/react": "^6.3.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "date-fns": "^3.5.0",
     "install": "^0.13.0",
     "lucide-react": "^0.341.0",
     "mongodb": "^6.3.0",
