@@ -7,7 +7,6 @@ export const personalInfoFormSchema = z.object({
   nationality: z.string().min(2, "Seleziona una nazionalità"),
   vatNumber: z.string().min(16, "Il codice fiscale è di 16 caratteri").max(16, "Il codice fiscale è di 16 caratteri"),
   birthDate: z.date(),
-  street: z.string().nonempty("Inserisci il tuo indirizzo di residenza"),
   address:z.object({
     street: z.string().nonempty("Inserisci il tuo indirizzo di residenza"),
     city: z.string().min(1, "Inserisci una città").max(30, "Massimo 30 caratteri"),
