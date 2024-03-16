@@ -49,9 +49,12 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
 
     const userId = clerkUser.publicMetadata?.userId as string;
 
+    const dateAsString = values.birthDate.toISOString().split('T')[0];
+
     const dataToSubmit = {
       // Include all other fields from values directly
       ...values,
+      birthDate: dateAsString,
       // Then, override and structure the address field as required by the backend
       address: {
         street: values.address.street,

@@ -22,7 +22,7 @@ export type UpdateUserParams = {
   lastName?: string;
   gender?: string;
   nationality?: string;
-  birthDate?: Date;
+  birthDate?: String;
   vatNumber?: string;
   address?: {
     street?: string;
