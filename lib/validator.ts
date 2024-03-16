@@ -6,7 +6,7 @@ export const personalInfoFormSchema = z.object({
   gender: z.string().min(2, "Seleziona un genere"),
   nationality: z.string().min(2, "Seleziona una nazionalità"),
   vatNumber: z.string().min(16, "Il codice fiscale è di 16 caratteri").max(16, "Il codice fiscale è di 16 caratteri"),
-  birthDate: z.string().transform((str) => new Date(str)),
+  birthDate: z.date(),
   street: z.string().nonempty("Inserisci il tuo indirizzo di residenza"),
   address:z.object({
     street: z.string().nonempty("Inserisci il tuo indirizzo di residenza"),
