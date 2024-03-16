@@ -49,9 +49,11 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
 
     const userId = clerkUser.publicMetadata?.userId as string;
 
+    console.log('Before conversion:', values.birthDate);
     const birthDateAsDate = values.birthDate && typeof values.birthDate === 'string' 
                             ? new Date(values.birthDate) 
                             : values.birthDate;
+    console.log('After conversion:', birthDateAsDate);
     
     const dataToSubmit = {
       // Include all other fields from values directly
