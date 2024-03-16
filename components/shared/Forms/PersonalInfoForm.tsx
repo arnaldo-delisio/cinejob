@@ -49,17 +49,14 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
 
     const userId = clerkUser.publicMetadata?.userId as string;
 
-    console.log('Before conversion:', values.birthDate);
-    const birthDateAsDate = values.birthDate && typeof values.birthDate === 'string' 
-                            ? new Date(values.birthDate) 
-                            : values.birthDate;
-    console.log('After conversion:', birthDateAsDate);
+    if (typeof values.birthDate === 'string') {
+      values.birthDate = new Date(values.birthDate);
+    }
     
     const dataToSubmit = {
       // Include all other fields from values directly
       ...values,
       // Then, override and structure the address field as required by the backend
-      birthDate:birthDateAsDate,
       address: {
         street: values.street,
         city: values.city,
