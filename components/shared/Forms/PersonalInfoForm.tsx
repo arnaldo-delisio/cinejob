@@ -245,7 +245,15 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
           />
         </div>
         
-        <Button type="submit" className="button">Aggiorna</Button>
+        <Button 
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="button"
+        >
+
+          {form.formState.isSubmitting ? (
+            'Aggiornando...'
+          ): 'Aggiorna'}</Button>
       </form>
     </Form>
   )
