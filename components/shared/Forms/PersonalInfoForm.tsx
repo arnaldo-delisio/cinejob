@@ -100,7 +100,7 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
             name="lastName"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Cognome</FormLabel>
+                <FormLabel>Cognomee</FormLabel>
                 <FormControl>
                   <Input placeholder="Inserisci il tuo cognome
                   " {...field} className="input-field"/>
