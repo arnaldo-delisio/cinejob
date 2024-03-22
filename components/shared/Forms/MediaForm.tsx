@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form"
 import * as z from "zod"
 import { MediaFormSchema } from "@/lib/validator"
-import { mediaDefaultValues } from "@/constants"
+import { MediaDefaultValues } from "@/constants"
 import { useState } from "react"
 import { FileUploader }  from "../FileUploader"
 import { useUploadThing } from '@/lib/uploadthing'
@@ -17,7 +17,7 @@ type MediaFormProps = {
 }
 const MediaForm = ({ userId, type }: MediaFormProps) => {
   const [files, setfiles] = useState<File[]>([])
-  const initialValues = mediaDefaultValues
+  const initialValues = MediaDefaultValues
 
   const { startUpload } = useUploadThing('imageUploader')
 

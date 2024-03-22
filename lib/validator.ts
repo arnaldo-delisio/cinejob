@@ -38,7 +38,7 @@ export const CastingFormSchema = z.object({
   equipment: z.array(z.string()),
 })
 
-export const mediaFormSchema = z.object({
+export const MediaFormSchema = z.object({
   photoPP: z.string(),
   photoFI: z.string(),
 })
