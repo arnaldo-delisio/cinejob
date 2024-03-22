@@ -20,7 +20,7 @@ export interface IUser extends Document {
   vehicles?: Schema.Types.ObjectId[];
   locations?: Schema.Types.ObjectId[];
   animals?: Schema.Types.ObjectId[];
-  castingInfos?: Schema.Types.ObjectId[];
+  casting?: Schema.Types.ObjectId[];
 }
 
 const UserSchema = new Schema<IUser>({
@@ -42,7 +42,7 @@ const UserSchema = new Schema<IUser>({
   vehicles: [{ type: Schema.Types.ObjectId, ref: 'Vehicle' }],
   locations: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
   animals: [{ type: Schema.Types.ObjectId, ref: 'Animal' }],
-  castingInfos: [{ type: Schema.Types.ObjectId, ref: 'CastingInfo' }],
+  casting: [{ type: Schema.Types.ObjectId, ref: 'Casting' }],
 }, { timestamps: true }); // Mongoose manages createdAt and updatedAt fields automatically
 
 const User = models.User || model('User', UserSchema);

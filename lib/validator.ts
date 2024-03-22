@@ -1,21 +1,18 @@
 import * as z from "zod"
 
-export const personalInfoFormSchema = z.object({
+export const PersonalInfoFormSchema = z.object({
   firstName: z.string().min(2, "Minimo 2 lettere").max(30, "Massimo 30 lettere"),
   lastName: z.string().min(2, "Minimo 2 lettere").max(30, "Massimo 30 lettere"),
   gender: z.string().min(2, "Seleziona un genere"),
   nationality: z.string().min(2, "Seleziona una nazionalità"),
   vatNumber: z.string().min(16, "Il codice fiscale è di 16 caratteri").max(16, "Il codice fiscale è di 16 caratteri"),
   birthDate: z.preprocess((input) => {
-    // If the input is a string and it's not empty, try to convert it to a Date
     if (typeof input === 'string' && input !== '') {
       const date = new Date(input);
-      // Check if the conversion results in a valid date
       if (!isNaN(date.getTime())) {
         return date;
       }
     }
-    // If input is already a Date, or if the string input couldn't be converted to a valid Date, return the input as-is
     return input;
   }, z.date()),
   address:z.object({
@@ -27,7 +24,7 @@ export const personalInfoFormSchema = z.object({
   })
 })
 
-export const physicalInfoFormSchema = z.object({
+export const CastingFormSchema = z.object({
   complexion: z.string().min(2, "Seleziona un'etnia"),
   height: z.string().min(1, "Seleziona l'altezza"),
   weight: z.string().min(1, "Seleziona il peso"),
@@ -36,21 +33,12 @@ export const physicalInfoFormSchema = z.object({
   hairColor: z.string().min(2, "Seleziona il colore dei capelli"),
   shoes: z.string().min(20, "Seleziona la taglia di scarpe"),
   tattoos: z.array(z.string()).min(1, "Seleziona almeno un'opzione"),
-})
-
-export const SkillsSocialsFormSchema = z.object({
   languages: z.array(z.string()).min(1, "Seleziona almeno un'opzione"),
   skills: z.array(z.string()),
   equipment: z.array(z.string()),
-  linkedin: z.string().url("URL non valido").optional(),
-  youtube: z.string().url("URL non valido").optional(),
-  facebook: z.string().url("URL non valido").optional(),
-  instagram: z.string().url("URL non valido").optional(),
-  tiktok: z.string().url("URL non valido").optional(),
-  twitter: z.string().url("URL non valido").optional(),
 })
 
-export const MediaFormSchema = z.object({
+export const mediaFormSchema = z.object({
   photoPP: z.string(),
   photoFI: z.string(),
 })

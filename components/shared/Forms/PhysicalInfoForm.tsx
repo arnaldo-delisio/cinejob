@@ -5,9 +5,9 @@ import { useForm, Controller} from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { physicalInfoFormSchema } from "@/lib/validator"
+import { CastingFormSchema } from "@/lib/validator"
 import * as z from "zod"
-import { physicalInfoDefaultValues } from "@/constants"
+import { CastingDefaultValues } from "@/constants"
 import Image from "next/image"
 
 import DropdownComplexion from "../Dropdowns/DropdownComplexion"
@@ -20,20 +20,20 @@ import { tattoos } from '../Dropdowns/DropdownTattoos'
 import DropdownSize from "../Dropdowns/DropdownSize"
 import DropdownShoes from "../Dropdowns/DropdownShoes"
 
-type PhysicalInfoFormProps = {
+type CastingFormProps = {
   userId: string
   type: "Update"
 }
-const PhysicalInfoForm = ({ userId, type }: PhysicalInfoFormProps) => {
-  const initialValues = physicalInfoDefaultValues
+const CastingForm = ({ userId, type }: CastingFormProps) => {
+  const initialValues = CastingDefaultValues
 
-  const form = useForm<z.infer<typeof physicalInfoFormSchema>>({
-    resolver: zodResolver(physicalInfoFormSchema),
+  const form = useForm<z.infer<typeof CastingFormSchema>>({
+    resolver: zodResolver(CastingFormSchema),
     defaultValues: initialValues
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof physicalInfoFormSchema>) {
+  function onSubmit(values: z.infer<typeof CastingFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
@@ -177,4 +177,4 @@ const PhysicalInfoForm = ({ userId, type }: PhysicalInfoFormProps) => {
   )
 }
 
-export default PhysicalInfoForm
+export default CastingForm

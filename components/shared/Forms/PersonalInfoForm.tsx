@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { personalInfoFormSchema } from "@/lib/validator"
+import { PersonalInfoFormSchema } from "@/lib/validator"
 import * as z from "zod"
-import { personalInfoDefaultValues } from "@/constants"
+import { PersonalInfoDefaultValues } from "@/constants"
 import Image from "next/image"
 import DatePicker from "react-datepicker";
 
@@ -30,15 +30,15 @@ const PersonalInfoForm = ({ type, user }: PersonalInfoFormProps) => {
   const { user: clerkUser } = useUser(); // Use Clerk hook to get the current user
   const initialValues = user && type === 'Update'
     ? user
-    : personalInfoDefaultValues
+    : PersonalInfoDefaultValues
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof personalInfoFormSchema>>({
-    resolver: zodResolver(personalInfoFormSchema),
+  const form = useForm<z.infer<typeof PersonalInfoFormSchema>>({
+    resolver: zodResolver(PersonalInfoFormSchema),
     defaultValues: initialValues
   });
  
-  const onSubmit = async (values: z.infer<typeof personalInfoFormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof PersonalInfoFormSchema>) => {
     // Check if we have clerkUser before proceeding
     if (!clerkUser) {
       console.error("Clerk user not found");

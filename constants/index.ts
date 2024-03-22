@@ -13,7 +13,7 @@ export const headerLinks = [
   },
 ]
 
-export const personalInfoDefaultValues = {
+export const PersonalInfoDefaultValues = {
   firstName: '',
   lastName: '',
   gender: '',
@@ -29,7 +29,7 @@ export const personalInfoDefaultValues = {
   },
 }
 
-export const physicalInfoDefaultValues = {
+export const CastingDefaultValues = {
   complexion: '',
   height: '',
   weight: '',
@@ -38,15 +38,12 @@ export const physicalInfoDefaultValues = {
   hairColor: '',
   shoes: '',
   tattoos: [],
-}
-
-export const skillsSocialsDefaultValues = {
   skills: [],
   languages: [],
   equipment: [],
 }
 
-export const mediaDefaultValues = {
+export const MediaDefaultValues = {
   photoPP: '',
   photoFI: '',
 }

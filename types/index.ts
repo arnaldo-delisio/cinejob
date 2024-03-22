@@ -33,8 +33,8 @@ export type UpdateUserParams = {
   };
 };
 
-export type CreateCastingInfoParams = {
-  userId: string;
+export type CreateCastingParams = {
+  proprietary: string;
   complexion: string;
   height: string;
   weight: string;
@@ -42,17 +42,14 @@ export type CreateCastingInfoParams = {
   eyeColor: string;
   hairColor: string;
   shoes: string;
-  tattoos: string[]; // Assuming this could be a list of tattoo descriptions
-  photoPP: string; // Profile Picture
-  photoFI: string; // Full Image
-  curriculum?: string; // Optional curriculum vitae or resume
-  competencies: string[]; // Special skills or competencies
-  languages: string[]; // Languages spoken
-  equipment: string[]; // Equipment the user can operate or provide
+  tattoos: string[];
+  competencies: string[];
+  languages: string[];
+  equipment: string[];
 };
 
-export type UpdateCastingInfoParams = {
-  userId: string; // To ensure the casting info is linked to the correct user
+export type UpdateCastingParams = {
+  proprietary: string;
   complexion?: string;
   height?: string;
   weight?: string;
@@ -60,14 +57,11 @@ export type UpdateCastingInfoParams = {
   eyeColor?: string;
   hairColor?: string;
   shoes?: string;
-  tattoos?: string[]; // This allows updating the list of tattoos
-  photoPP?: string; // Allows updating the Profile Picture
-  photoFI?: string; // Allows updating the Full Image
-  curriculum?: string; // Allows updating the CV or resume
-  competencies?: string[]; // Allows updating special skills or competencies
-  languages?: string[]; // Allows updating languages spoken
-  equipment?: string[]; // Allows updating equipment the user can operate or provide
-};
+  tattoos?: string[];
+  competencies?: string[];
+  languages?: string[];
+  equipment?: string[]; 
+}
 
 export type CreateVehicleParams = {
   userId: string; // Reference to the owner of the vehicle
