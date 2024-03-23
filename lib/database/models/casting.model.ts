@@ -11,7 +11,7 @@ export interface ICasting extends Document {
   hairColor: string;
   shoes: string;
   tattoos: string[];
-  competencies: string[];
+  skills: string[];
   languages: string[];
   equipment: string[];
 }
@@ -27,7 +27,7 @@ const CastingSchema = new Schema<ICasting>({
   hairColor: { type: String, required: true },
   shoes: { type: String, required: true },
   tattoos: [{ type: String, required: true }],
-  competencies: [{ type: String }],
+  skills: [{ type: String }],
   languages: [{ type: String, required: true }],
   equipment: [{ type: String }],
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });

@@ -4,6 +4,7 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
+import { createCasting } from '@/lib/actions/casting.actions'
  
 export async function POST(req: Request) {
  
@@ -83,8 +84,22 @@ export async function POST(req: Request) {
           userId: newUser._id
         }
       })
+      const CastingDefaultValues = {
+        proprietary: newUser._id,
+        complexion: '',
+        height: '',
+        weight: '',
+        size: '',
+        eyeColor: '',
+        hairColor: '',
+        shoes: '',
+        tattoos: [],
+        skills: [],
+        languages: [],
+        equipment: [],
+      }
+      await createCasting(newUser._id, CastingDefaultValues)
     }
-    
 
     return NextResponse.json({ message: 'OK', user: newUser })
     

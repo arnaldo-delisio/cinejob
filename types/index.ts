@@ -35,17 +35,17 @@ export type UpdateUserParams = {
 
 export type CreateCastingParams = {
   proprietary: string;
-  complexion: string;
-  height: string;
-  weight: string;
-  size: string;
-  eyeColor: string;
-  hairColor: string;
-  shoes: string;
-  tattoos: string[];
-  competencies: string[];
-  languages: string[];
-  equipment: string[];
+  complexion?: string;
+  height?: string;
+  weight?: string;
+  size?: string;
+  eyeColor?: string;
+  hairColor?: string;
+  shoes?: string;
+  tattoos?: string[];
+  skills?: string[];
+  languages?: string[];
+  equipment?: string[];
 };
 
 export type UpdateCastingParams = {
@@ -58,7 +58,7 @@ export type UpdateCastingParams = {
   hairColor?: string;
   shoes?: string;
   tattoos?: string[];
-  competencies?: string[];
+  skills?: string[];
   languages?: string[];
   equipment?: string[]; 
 }
