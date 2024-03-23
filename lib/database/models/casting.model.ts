@@ -19,16 +19,16 @@ export interface ICasting extends Document {
 // Define the Mongoose schema for casting information
 const CastingSchema = new Schema<ICasting>({
   proprietary: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  complexion: { type: String, required: true },
-  height: { type: String, required: true },
-  weight: { type: String, required: true },
-  size: { type: String, required: true },
-  eyeColor: { type: String, required: true },
-  hairColor: { type: String, required: true },
-  shoes: { type: String, required: true },
-  tattoos: [{ type: String, required: true }],
+  complexion: String,
+  height: String,
+  weight: String,
+  size: String,
+  eyeColor: String,
+  hairColor: String,
+  shoes: String,
+  tattoos: [{ type: String }],
   skills: [{ type: String }],
-  languages: [{ type: String, required: true }],
+  languages: [{ type: String }],
   equipment: [{ type: String }],
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
