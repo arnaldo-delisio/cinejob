@@ -33,6 +33,6 @@ const CastingSchema = new Schema<ICasting>({
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
 // Create the model or retrieve it if it already exists to prevent recompilation issues
-const Casting = models.Casting || model<ICasting>('CastingInfo', CastingSchema);
+const Casting = models.Casting || model<ICasting>('Casting', CastingSchema);
 
 export default Casting;
