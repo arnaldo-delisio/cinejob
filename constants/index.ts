@@ -29,6 +29,20 @@ export const PersonalInfoDefaultValues = {
   },
 }
 
+export const CastingDefaultValues = {
+  complexion: '',
+  height: '',
+  weight: '',
+  size: '',
+  eyeColor: '',
+  hairColor: '',
+  shoes: '',
+  tattoos: [],
+  skills: [],
+  languages: [],
+  equipment: [],
+}
+
 export const MediaDefaultValues = {
   photoPP: '',
   photoFI: '',
